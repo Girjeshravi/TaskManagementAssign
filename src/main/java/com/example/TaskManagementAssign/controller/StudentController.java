@@ -36,7 +36,7 @@ public class StudentController {
     @PutMapping("/update/{id}/{taskName}")
     public ResponseEntity updateUserTitle(@PathVariable Integer id, @PathVariable String taskName){
         try{
-            Student student=studentService.updateUserById(id,taskName);
+            Student student=studentService.updateStudentTaskName(id,taskName);
             return new ResponseEntity(student, HttpStatus.FOUND);
 
         }
@@ -44,10 +44,10 @@ public class StudentController {
             return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
-    @PutMapping("/update/{id}/{taskStatus}")
-    public ResponseEntity updateUserStatus(@PathVariable Integer id,@PathVariable String taskStatus){
+    @PutMapping("/updates/{id}/{taskStatus}")
+    public ResponseEntity updateStudentStatus(@PathVariable Integer id,@PathVariable String taskStatus){
         try{
-            Student user=studentService.updateUserStatus(id, taskStatus);
+            Student user=studentService.updateStudentStatus(id, taskStatus);
             return new ResponseEntity(user,HttpStatus.FOUND);
 
         }
@@ -56,8 +56,8 @@ public class StudentController {
         }
     }
     @DeleteMapping("/delete")
-    public String deleteStudent(Integer studentId){
-        String message=studentService.deleteStudent(studentId);
+    public String deleteStudent(Integer studentIds){
+        String message=studentService.deleteStudent(studentIds);
         return message;
     }
 

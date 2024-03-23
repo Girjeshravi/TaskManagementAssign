@@ -45,15 +45,9 @@ public class StudentService {
             return null;
         }
     }
-    public Student updateUserById(Integer id,String title){
-        Student user =studentRepository.findById(id).get();
-        if(user==null){
-            throw new StudentNotFoundException("Invalid id");
-        }
-        return user;
-    }
 
-    public Student updateUserTitle(Integer id, String title) {
+
+    public Student updateStudentTaskName(Integer id, String title) {
         Student student =studentRepository.findById(id).get();
         if(student==null){
             throw new StudentNotFoundException("Invalid id");
@@ -62,7 +56,7 @@ public class StudentService {
         studentRepository.save(student);
         return student;
     }
-    public Student updateUserStatus(Integer id, String status) {
+    public Student updateStudentStatus(Integer id, String status) {
         Student student =studentRepository.findById(id).get();
         if(student==null){
             throw new StudentNotFoundException("Invalid id");
