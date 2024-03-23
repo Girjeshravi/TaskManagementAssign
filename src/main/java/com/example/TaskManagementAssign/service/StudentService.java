@@ -4,6 +4,8 @@ import com.example.TaskManagementAssign.Exceptions.StudentNotFoundException;
 import com.example.TaskManagementAssign.modal.Student;
 import com.example.TaskManagementAssign.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,10 +16,11 @@ import java.util.Optional;
 public class StudentService {
 
     @Autowired StudentRepository studentRepository;
+    PasswordEncoder passwordEncoder= new BCryptPasswordEncoder();
     public String addStudent(Student student)
     {
         if(studentRepository.findByStudentEmail(student.getStudentEmail())==null) {
-
+            student.setPassword(passwordEncoder.encode(student.getPassword()));
             studentRepository.save(student);
             return "Data added successfully";
         }

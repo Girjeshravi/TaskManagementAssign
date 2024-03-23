@@ -21,19 +21,19 @@ public class StudentController {
         return studentService.addStudent(student);
     }
 
-    @GetMapping("/fetchAll")
+    @GetMapping("/fetchAll")//done
     public List<Student> getAllStudents()
     {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("/fetchById")
+    @GetMapping("/fetchById")//done
     public Student fetchByStudentId(Integer studentId) {
         return studentService.fetchByStudentId(studentId);
     }
 
 
-    @PutMapping("/update/{id}/{taskName}")
+    @PutMapping("/update/{id}/{taskName}")//done
     public ResponseEntity updateUserTitle(@PathVariable Integer id, @PathVariable String taskName){
         try{
             Student student=studentService.updateStudentTaskName(id,taskName);
@@ -44,7 +44,7 @@ public class StudentController {
             return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
-    @PutMapping("/updates/{id}/{taskStatus}")
+    @PutMapping("/updates/{id}/{taskStatus}")//done
     public ResponseEntity updateStudentStatus(@PathVariable Integer id,@PathVariable String taskStatus){
         try{
             Student user=studentService.updateStudentStatus(id, taskStatus);
@@ -60,5 +60,4 @@ public class StudentController {
         String message=studentService.deleteStudent(studentIds);
         return message;
     }
-
 }

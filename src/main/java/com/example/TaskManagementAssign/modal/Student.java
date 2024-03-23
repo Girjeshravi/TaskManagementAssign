@@ -22,4 +22,9 @@ public class Student {
     private String taskName;
     private String taskDescription;
     private String taskStatus;
+
+    @Column(unique = true,nullable = false)
+    private String username;
+    private String password;
+    private String role;
 }
