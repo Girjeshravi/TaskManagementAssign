@@ -13,8 +13,7 @@ import java.util.Optional;
 @Service
 public class StudentService {
 
-    @Autowired
-    private StudentRepository studentRepository;
+    @Autowired StudentRepository studentRepository;
     public String addStudent(Student student)
     {
         if(studentRepository.findByStudentEmail(student.getStudentEmail())==null) {
@@ -35,29 +34,22 @@ public class StudentService {
         else {
             return new ArrayList<>();
         }
-
     }
 
-    public Student fetchByStudentId(Integer studentId)
-    {
-
+    public Student fetchByStudentId(Integer studentId) {
         Optional<Student> optionalStudent = studentRepository.findById(studentId);
         if (optionalStudent.isPresent()) {
             return optionalStudent.get();
         }
-        else
-        {
+        else {
             return null;
         }
-
-
     }
     public Student updateUserById(Integer id,String title){
         Student user =studentRepository.findById(id).get();
         if(user==null){
             throw new StudentNotFoundException("Invalid id");
         }
-
         return user;
     }
 
@@ -80,7 +72,7 @@ public class StudentService {
         return student;
     }
 
-    public String deleteUser(Integer id) {
+    public String deleteStudent(Integer id) {
         studentRepository.deleteById(id);
         return "user deleted successfully";
     }

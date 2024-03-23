@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/student")
 public class StudentController {
-
     @Autowired
     private StudentService studentService;
 
@@ -29,16 +28,15 @@ public class StudentController {
     }
 
     @GetMapping("/fetchById")
-    public Student fetchByStudentId(Integer studentId)
-    {
+    public Student fetchByStudentId(Integer studentId) {
         return studentService.fetchByStudentId(studentId);
     }
 
 
-    @PutMapping("/update/{id}/{title}")
-    public ResponseEntity updateUserTitle(@PathVariable Integer id, @PathVariable String title){
+    @PutMapping("/update/{id}/{taskName}")
+    public ResponseEntity updateUserTitle(@PathVariable Integer id, @PathVariable String taskName){
         try{
-            Student student=studentService.updateUserById(id,title);
+            Student student=studentService.updateUserById(id,taskName);
             return new ResponseEntity(student, HttpStatus.FOUND);
 
         }
@@ -46,10 +44,10 @@ public class StudentController {
             return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
-    @PutMapping("/update/{id}/{status}")
-    public ResponseEntity updateUserStatus(@PathVariable Integer id,@PathVariable String status){
+    @PutMapping("/update/{id}/{taskStatus}")
+    public ResponseEntity updateUserStatus(@PathVariable Integer id,@PathVariable String taskStatus){
         try{
-            Student user=studentService.updateUserStatus(id, status);
+            Student user=studentService.updateUserStatus(id, taskStatus);
             return new ResponseEntity(user,HttpStatus.FOUND);
 
         }
@@ -57,9 +55,9 @@ public class StudentController {
             return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
-    @DeleteMapping("/delete/{id}")
-    public String deleteUser(@PathVariable Integer id){
-        String message=studentService.deleteUser(id);
+    @DeleteMapping("/delete")
+    public String deleteStudent(Integer studentId){
+        String message=studentService.deleteStudent(studentId);
         return message;
     }
 
