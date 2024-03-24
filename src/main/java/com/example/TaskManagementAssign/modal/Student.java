@@ -1,10 +1,8 @@
 package com.example.TaskManagementAssign.modal;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Table(name = "StudentInformation")
 @Entity
@@ -12,19 +10,25 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level= AccessLevel.PRIVATE)
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer studentId;
-    private String studentName;
-    private String studentEmail;
-    private String dueDate;
-    private String taskName;
-    private String taskDescription;
-    private String taskStatus;
+    Integer studentId;
+
+    String studentName;
 
     @Column(unique = true,nullable = false)
-    private String username;
-    private String password;
-    private String role;
+    String studentEmail;
+
+    String dueDate;
+    String taskName;
+    String taskDescription;
+    String taskStatus;
+
+    @Column(unique = true,nullable = false)
+    String username;
+
+    String password;
+    String role;
 }

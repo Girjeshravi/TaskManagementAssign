@@ -15,28 +15,28 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping("/add")
+    @PostMapping("/add")//done1
     public String addStudent(@RequestBody Student student)
     {
         return studentService.addStudent(student);
     }
 
-    @GetMapping("/fetchAll")//done
+    @GetMapping("/fetchAll")//done1
     public List<Student> getAllStudents()
     {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("/fetchById")//done
+    @GetMapping("/fetchById")//done1
     public Student fetchByStudentId(Integer studentId) {
         return studentService.fetchByStudentId(studentId);
     }
 
 
     @PutMapping("/update/{id}/{taskName}")//done
-    public ResponseEntity updateUserTitle(@PathVariable Integer id, @PathVariable String taskName){
+    public ResponseEntity updateUserTitle(@PathVariable Integer StudentId, @PathVariable String taskName){
         try{
-            Student student=studentService.updateStudentTaskName(id,taskName);
+            Student student=studentService.updateStudentTaskName(StudentId,taskName);
             return new ResponseEntity(student, HttpStatus.FOUND);
 
         }

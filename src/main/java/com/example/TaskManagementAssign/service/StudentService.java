@@ -21,6 +21,7 @@ public class StudentService {
     {
         if(studentRepository.findByStudentEmail(student.getStudentEmail())==null) {
             student.setPassword(passwordEncoder.encode(student.getPassword()));
+            student.setRole("ROLE_STUDENT,ROLE_RANDOM");
             studentRepository.save(student);
             return "Data added successfully";
         }
@@ -73,4 +74,5 @@ public class StudentService {
         studentRepository.deleteById(id);
         return "user deleted successfully";
     }
+
 }
