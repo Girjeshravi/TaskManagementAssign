@@ -34,9 +34,9 @@ public class StudentController {
 
 
     @PutMapping("/update/{id}/{taskName}")//done
-    public ResponseEntity updateUserTitle(@PathVariable Integer StudentId, @PathVariable String taskName){
+    public ResponseEntity updateUserTitle(@PathVariable Integer id, @PathVariable String taskName){
         try{
-            Student student=studentService.updateStudentTaskName(StudentId,taskName);
+            Student student=studentService.updateStudentTaskName(id,taskName);
             return new ResponseEntity(student, HttpStatus.FOUND);
 
         }
